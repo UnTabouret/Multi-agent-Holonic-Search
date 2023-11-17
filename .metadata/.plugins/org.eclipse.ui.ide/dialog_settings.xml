@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="io.sarl.demos.basic.holarchy"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Examples/io.sarl.JavaFXExamples"/>
+			<item value="org.eclipse.ui.Examples/io.sarl.UIExamples"/>
+			<item value="org.eclipse.ui.Examples/io.sarl.NoUIExamples"/>
+			<item value="org.eclipse.ui.Examples/io.sarl.Templates"/>
+			<item value="org.eclipse.ui.Examples/io.sarl.Tutorials"/>
+		</list>
+	</section>
+</section>

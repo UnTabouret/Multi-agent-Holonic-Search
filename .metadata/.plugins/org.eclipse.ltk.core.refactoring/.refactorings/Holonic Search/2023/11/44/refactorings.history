@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;Holonic Search&apos;&#x0D;&#x0A;- Original project: &apos;Holonic Search&apos;&#x0D;&#x0A;- Original element: &apos;Holonic Search/src/main/sarl/holonic.search&apos;" description="Delete element" element1="/src\/main\/sarl&lt;holonic.search" element2="/src\/main\/sarl&lt;holonic" elements="2" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1699106332385" subPackages="false" version="1.0"/>
+</session>

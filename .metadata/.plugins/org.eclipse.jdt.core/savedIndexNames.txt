@@ -1,0 +1,6 @@
+INDEX VERSION 1.134+C:\Users\jossu\Documents\Studies\Belfort\A23\IA51\TP\TP2-Search\.metadata\.plugins\org.eclipse.jdt.core
+83953952.index
+1971167914.index
+850150442.index
+1239110590.index
+1865797976.index

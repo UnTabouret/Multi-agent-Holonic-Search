@@ -1,0 +1,97 @@
+import io.sarl.api.core.Behaviors
+import io.sarl.api.core.DefaultContextInteractions
+import io.sarl.api.core.Initialize
+import io.sarl.api.core.Lifecycle
+import io.sarl.api.core.Logging
+import io.sarl.api.core.Schedules
+import java.util.concurrent.atomic.AtomicInteger
+import java.io.File
+import io.sarl.api.core.ExternalContextAccess
+import java.util.UUID
+import io.sarl.api.core.OpenEventSpace
+import io.sarl.lang.core.SpaceID
+import io.sarl.api.core.InnerContextAccess
+
+event SearchComplete
+
+agent BootAgent {
+	uses DefaultContextInteractions, Lifecycle, Logging
+	
+	on Initialize{
+		//Read target and type from launch parameters
+		var targetLocation : String = "C:\\Users\\jossu\\Documents\\Studies\\Belfort\\A23\\IA51\\TP\\TP2-Search\\Search folder";
+		var defaultUUID : UUID = UUID::randomUUID; 
+		spawn(SearchManager)
+		spawn(SearchAgent)
+	}
+	
+}
+
+agent SearchManager {
+	uses DefaultContextInteractions, Lifecycle, Logging, 
+
+	var searchLocation : String = "C:\\Users\\jossu\\Documents\\Studies\\Belfort\\A23\\IA51\\TP\\TP2-Search\\Search folder";
+	var targetType : String = ".sarl";
+	var defaultSpace : OpenEventSpace;
+
+	on Initialize {
+		loggingName = "Search Manager";
+		
+	}
+
+	on SearchComplete [occurrence.spaceID == defaultSpace.spaceID] {
+		info("Fin de la recherche");
+		killMe
+	}
+	
+}
+
+agent SearchAgent {
+
+	uses Lifecycle, Logging, InnerContextAccess
+	
+	var id : Integer
+	
+	var targetType : String
+	
+	var searchLocation : String
+	
+	var childCount : Integer = 0;
+
+	on Initialize {
+
+		id = occurrence.parameters.get(0) as Integer;
+		targetType = occurrence.parameters.get(1) as String;
+		searchLocation = occurrence.parameters.get(2) as String;
+		
+		loggingName = id as String;
+		id = id*10;
+		 
+		
+		var folder : File = new File(searchLocation);
+		for (file : folder.listFiles()){
+			if (file.isDirectory()) {
+				spawnInContext(SearchAgent, innerContext, id++, targetType, file.path)
+				childCount++;
+			} else {
+				info(file.getName());
+			}
+			
+			
+		}
+		
+		if(childCount == 0)
+		{
+			info("Travail terminé");
+			new SearchComplete();
+			killMe
+		}
+		
+		
+		
+		
+		
+	}
+
+}
+
